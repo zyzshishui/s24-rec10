@@ -4,8 +4,9 @@ interface GameState {
 
 interface Cell {
   text: string;
-  clazz: string;
-  link: string;
+  playable: boolean;
+  x: number;
+  y: number;
 }
 
 export type { GameState, Cell }

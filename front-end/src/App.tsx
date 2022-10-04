@@ -48,17 +48,24 @@ class App extends React.Component<Props, GameState> {
     this.setState({ cells: json['cells'] });
   }
 
-  play(link: string): React.MouseEventHandler {
+  /**
+   * play will generate an anonymous function that the component
+   * can bind with.
+   * @param x 
+   * @param y 
+   * @returns 
+   */
+  play(x: number, y: number): React.MouseEventHandler {
     return async (e) => {
       e.preventDefault();
-      const response = await fetch(link)
+      const response = await fetch(`/play?x=${x}&y=${y}`)
       const json = await response.json();
       this.setState({ cells: json['cells'] });
     }
   }
 
   createCell(cell: Cell, index: number): React.ReactNode {
-    if (cell.link !== "")
+    if (cell.playable)
       /**
        * key is used for React when given a list of items. It
        * helps React to keep track of the list items and decide
@@ -67,7 +74,7 @@ class App extends React.Component<Props, GameState> {
        */
       return (
         <div key={index}>
-          <a href='/' onClick={this.play(cell.link)}>
+          <a href='/' onClick={this.play(cell.x, cell.y)}>
             <BoardCell cell={cell}></BoardCell>
           </a>
         </div>

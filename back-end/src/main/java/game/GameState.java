@@ -34,18 +34,16 @@ public class GameState {
         for (int x = 0; x <= 2; x++) {
             for (int y = 0; y <= 2; y++) {
                 String text = "";
-                String link = "";
-                String clazz = "";
+                boolean playable = false;
                 Player player = board.getCell(x, y);
                 if (player == Player.PLAYER0)
                     text = "X";
                 else if (player == Player.PLAYER1)
                     text = "O";
                 else if (player == null) {
-                    clazz = "playable";
-                    link = "/play?x=" + x + "&y=" + y;
+                    playable = true;
                 }
-                cells[3 * y + x] = new Cell(text, clazz, link);
+                cells[3 * y + x] = new Cell(x, y, text, playable);
             }
         }
         return cells;
@@ -53,32 +51,39 @@ public class GameState {
 }
 
 class Cell {
+    private final int x;
+    private final int y;
     private final String text;
-    private final String clazz;
-    private final String link;
+    private final boolean playable;
 
-    Cell(String text, String clazz, String link) {
+    Cell(int x, int y, String text, boolean playable) {
+        this.x = x;
+        this.y = y;
         this.text = text;
-        this.clazz = clazz;
-        this.link = link;
+        this.playable = playable;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public String getText() {
         return this.text;
     }
 
-    public String getClazz() {
-        return this.clazz;
-    }
-
-    public String getLink() {
-        return this.link;
+    public boolean isPlayable() {
+        return this.playable;
     }
 
     @Override
     public String toString() {
         return "{ \"text\": \"" + this.text + "\"," +
-                " \"clazz\": \"" + this.clazz + "\"," +
-                " \"link\": \"" + this.link + "\"}";
+                " \"playable\": " + this.playable + "," +
+                " \"x\": " + this.x + "," +
+                " \"y\": " + this.y + " }" ;
     }
 }
