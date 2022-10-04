@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css'; // import the css file to enable your styles.
-import { GameState, Cell } from './game'
+import { GameState, Cell } from './game';
+import BoardCell from './Cell';
 
 /**
  * Define the type of the props field for a React component
@@ -9,6 +10,18 @@ interface Props { }
 
 /**
  * Using generics to specify the type of props and state.
+ * props and state is a special field in a React component.
+ * React will keep track of the value of props and state.
+ * Any time there's a change to their values, React will
+ * automatically update (not fully re-render) the HTML needed.
+ * 
+ * props and state are similar in the sense that they manage
+ * the data of this component. A change to their values will
+ * cause the view (HTML) to change accordingly.
+ * 
+ * Usually, props is passed and changed by the parent component;
+ * state is the internal value of the component and managed by
+ * the component itself.
  */
 class App extends React.Component<Props, GameState> {
   /**
@@ -17,11 +30,6 @@ class App extends React.Component<Props, GameState> {
   constructor(props: Props) {
     super(props)
     /**
-     * state is a special field in a React component. React will
-     * keep track of the changes to the state field. Anytime there's
-     * an update to the value of state, React will automatically
-     * re-render the HTML.
-     * 
      * state has type GameState as specified in the class inheritance.
      */
     this.state = { cells: [] }
@@ -56,13 +64,15 @@ class App extends React.Component<Props, GameState> {
        * @see https://reactjs.org/docs/lists-and-keys.html#keys
        */
       return (
-        <a key={index} href='/' onClick={this.play(cell.link)}>
-          <div className={`cell ${cell.clazz}`}>{cell.text}</div>
-        </a>
+        <div key={index}>
+          <a href='/' onClick={this.play(cell.link)}>
+            <BoardCell cell={cell}></BoardCell>
+          </a>
+        </div>
       )
     else
       return (
-        <div key={index} className={`cell ${cell.clazz}`}>{cell.text}</div>
+        <div key={index}><BoardCell cell={cell}></BoardCell></div>
       )
   }
 
