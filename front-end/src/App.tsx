@@ -24,6 +24,8 @@ interface Props { }
  * the component itself.
  */
 class App extends React.Component<Props, GameState> {
+  private initialized: boolean = false;
+
   /**
    * @param props has type Props
    */
@@ -82,7 +84,14 @@ class App extends React.Component<Props, GameState> {
    * @see https://reactjs.org/docs/react-component.html#componentdidmount
    */
   componentDidMount(): void {
-    this.newGame();
+    /**
+     * setState in DidMount() will cause it to render twice which may cause
+     * this function to be invoked twice. Use initialized to avoid that.
+     */
+    if (!this.initialized) {
+      this.newGame();
+      this.initialized = true;
+    }
   }
 
   /**
