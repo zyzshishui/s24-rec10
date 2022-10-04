@@ -1,25 +1,11 @@
 import React from 'react';
 import './App.css'; // import the css file to enable your styles.
-
-/**
- * Define the type of the state field for a React component
- */
-interface GameState {
-  cells: Cell[];
-}
-
-interface Cell {
-  text: string;
-  clazz: string;
-  link: string;
-}
+import { GameState, Cell } from './game'
 
 /**
  * Define the type of the props field for a React component
  */
 interface Props { }
-
-const ServerAddress = 'http://localhost:8080'
 
 /**
  * Using generics to specify the type of props and state.
@@ -47,7 +33,7 @@ class App extends React.Component<Props, GameState> {
    * just an issue of Javascript.
    */
   newGame = async () => {
-    const response = await fetch(`${ServerAddress}/newgame`);
+    const response = await fetch('/newgame');
     const json = await response.json();
     this.setState({ cells: json['cells'] });
   }
@@ -55,7 +41,7 @@ class App extends React.Component<Props, GameState> {
   play(link: string): React.MouseEventHandler {
     return async (e) => {
       e.preventDefault();
-      const response = await fetch(ServerAddress + link)
+      const response = await fetch(link)
       const json = await response.json();
       this.setState({ cells: json['cells'] });
     }
@@ -82,7 +68,7 @@ class App extends React.Component<Props, GameState> {
 
   /**
    * This function will call after the HTML is rendered.
-   * We update the state by creating a new game.
+   * We update the initial state by creating a new game.
    * @see https://reactjs.org/docs/react-component.html#componentdidmount
    */
   componentDidMount(): void {

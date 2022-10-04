@@ -41,9 +41,7 @@ public class App extends NanoHTTPD {
         }
         // Extract the view-specific data from the game and apply it to the template.
         GameState gameplay = GameState.forGame(this.game);
-        Response resp = newFixedLengthResponse(gameplay.toString());
-        resp.addHeader("Access-Control-Allow-Origin", "*");
-        return resp;
+        return newFixedLengthResponse(gameplay.toString());
     }
 
     public static class Test {
