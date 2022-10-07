@@ -57,6 +57,7 @@ class App extends React.Component<Props, GameState> {
    */
   play(x: number, y: number): React.MouseEventHandler {
     return async (e) => {
+      // prevent the default behavior on clicking a link; otherwise, it will jump to a new page.
       e.preventDefault();
       const response = await fetch(`/play?x=${x}&y=${y}`)
       const json = await response.json();
