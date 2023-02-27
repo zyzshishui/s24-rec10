@@ -25,7 +25,9 @@ public class GameState {
      */
     @Override
     public String toString() {
-        return "{ \"cells\": " + Arrays.toString(this.cells) + "}";
+        return """
+                { "cells": %s}
+                """.formatted(Arrays.toString(this.cells));
     }
 
     private static Cell[] getCells(Game game) {
@@ -81,9 +83,13 @@ class Cell {
 
     @Override
     public String toString() {
-        return "{ \"text\": \"" + this.text + "\"," +
-                " \"playable\": " + this.playable + "," +
-                " \"x\": " + this.x + "," +
-                " \"y\": " + this.y + " }" ;
+        return """
+                {
+                    "text": "%s",
+                    "playable": %b,
+                    "x": %d,
+                    "y": %d 
+                }
+                """.formatted(this.text, this.playable, this.x, this.y);
     }
 }
