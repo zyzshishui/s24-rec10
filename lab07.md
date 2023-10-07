@@ -43,10 +43,10 @@ This program already has the frontend connected to the backend for you.  How thi
 
 
 ## HTML/CSS Review
-HTML is the standard markup language for Web pages. It is very similar to XML. CSS is the language we use to style an HTML document. CSS describes how HTML elements should be displayed and looked like. There are a lot of good online resources for learning HTML and CSS, e.g., HTML Tutorial and CSS Tutorial. Please read them if you are not familiar with these materials.
+HTML is the standard markup language for Web pages. It is very similar to XML. CSS is the language we use to style an HTML document. CSS describes how HTML elements should be displayed and looked like. There are a lot of good online resources for learning HTML and CSS, e.g., HTML Tutorial (https://www.w3schools.com/html/default.asp) and CSS Tutorial (https://www.w3schools.com/css/default.asp). Please read them if you are not familiar with these materials.
 
 ## Nanohttpd Review
-Nanohttpd is a lightweight Java server that is good for very basic web applications.  Because of how small and lightweight it is, it is good for embedding into already existing applications without adding too much size or latency to the project.  The backend server of this game is built upon it. To learn more about it, please refer to this Nanohttpd Tutorial.
+Nanohttpd is a lightweight Java server that is good for very basic web applications.  Because of how small and lightweight it is, it is good for embedding into already existing applications without adding too much size or latency to the project.  The backend server of this game is built upon it. To learn more about it, please refer to this Nanohttpd Tutorial (https://www.baeldung.com/nanohttpd).
 
 ## React.js Review
 React.js is a Javascript framework that can be adjusted to work for TypeScript. It is mainly used to make very interactive and dynamic UIs.  It allows you to create a complex UI using smaller, isolated pieces of code called “components”. We will use the most basic part of React.js.
@@ -66,7 +66,7 @@ A very simple component could look like:
 Each component will have:
 props, an object passed from the caller that holds the data of this component, e.g., in the example, we assume that the parent component of Welcome will pass in the name of this Welcome component instance, which the name will be stored in props, so we can access the name using this.props.name;
 state, an object managed by the component itself that can also hold the data of the component, we can use setState() function to update its value, and the view will automatically update accordingly;
-render(), the function you must implement which defines how the component will be rendered. In React.js, we use JSX to directly define HTML as code in Javascript or Typescript. In the example, we create a tag, and the name is dynamically obtained from the `this.props.name` object. An advantage of React is that, when the value of name is changed, the view will automatically update.
+render(), the function you must implement which defines how the component will be rendered. In React.js, we use JSX (https://legacy.reactjs.org/docs/introducing-jsx.html) to directly define HTML as code in Javascript or Typescript. In the example, we create a tag, and the name is dynamically obtained from the `this.props.name` object. An advantage of React is that, when the value of name is changed, the view will automatically update.
 
 Some notes:
 props should not be changed by the component itself but instead will be changed by its parent component. On the other hand, state is usually the internal data of the component which should be managed by the component itself.
