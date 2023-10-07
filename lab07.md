@@ -63,7 +63,7 @@ A very simple component could look like:
 Each component will have:
 props, an object passed from the caller that holds the data of this component, e.g., in the example, we assume that the parent component of Welcome will pass in the name of this Welcome component instance, which the name will be stored in props, so we can access the name using this.props.name;
 state, an object managed by the component itself that can also hold the data of the component, we can use setState() function to update its value, and the view will automatically update accordingly;
-render(), the function you must implement which defines how the component will be rendered. In React.js, we use JSX to directly define HTML as code in Javascript or Typescript. In the example, we create a <h1> tag, and the name is dynamically obtained from the `this.props.name` object. An advantage of React is that, when the value of name is changed, the view will automatically update.
+render(), the function you must implement which defines how the component will be rendered. In React.js, we use JSX to directly define HTML as code in Javascript or Typescript. In the example, we create a tag, and the name is dynamically obtained from the `this.props.name` object. An advantage of React is that, when the value of name is changed, the view will automatically update.
 
 Some notes:
 props should not be changed by the component itself but instead will be changed by its parent component. On the other hand, state is usually the internal data of the component which should be managed by the component itself.
