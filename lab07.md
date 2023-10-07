@@ -83,6 +83,7 @@ One thing this lab makes use of is a TypeScript property called proxy. Proxy ess
 JSON (JavaScript Object Notation) is a way of formatting data to be easily stored and read by humans. This is similar to a dictionary object with keys and values.  An example JSON object is shown below:
 
 ![jsonFormat](images/jsonFormat.png)
+
 This is the format of the information sent from the backend to the frontend. 
 
 
