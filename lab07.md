@@ -15,6 +15,7 @@ Clone the TicTacToe repository from: https://github.com/CMU-17-214/f22-rec07
 
 Refer to the README’s of the projects therein for set up instructions. After you run the program, you will be able to play the game through the GUI as illustrated in the snippet below from the link http://localhost:3000/.
 
+![tictactoe](images/tictactoe.png)
 
 
 Today’s recitation is all about learning to read and navigate this type of code. The deliverables require you to implement a few very simple improvements, that won’t take you much time at all once you get the hang of how the code is written and structured. So prioritize reading the code and thinking about the flow of information and control.
@@ -60,6 +61,8 @@ Components are a key element of React.js projects. Each component defines 1) the
 
 A very simple component could look like:
 
+![component](images/component.png)
+
 Each component will have:
 props, an object passed from the caller that holds the data of this component, e.g., in the example, we assume that the parent component of Welcome will pass in the name of this Welcome component instance, which the name will be stored in props, so we can access the name using this.props.name;
 state, an object managed by the component itself that can also hold the data of the component, we can use setState() function to update its value, and the view will automatically update accordingly;
@@ -72,11 +75,14 @@ constructor(props) is not necessary for a component. The only needed one is the 
 ### Proxy
 One thing this lab makes use of is a TypeScript property called proxy. Proxy essentially tells the front end to route all connections to the base url given in the package.json.  For this assignment, the proxy routes to http://localhost:8080/, which is the url that the backend server is running on. This means that when we have a command like await fetch(“/newgame”), this will send a GET request to http://localhost:8080/newgame. 
 
+![proxy](images/proxy.png)
 
+![proxy2](images/proxy2.png)
 
 ### JSON
 JSON (JavaScript Object Notation) is a way of formatting data to be easily stored and read by humans. This is similar to a dictionary object with keys and values.  An example JSON object is shown below:
 
+![jsonFormat](images/jsonFormat.png)
 This is the format of the information sent from the backend to the frontend. 
 
 
