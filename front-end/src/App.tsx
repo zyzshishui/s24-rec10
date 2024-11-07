@@ -34,7 +34,7 @@ class App extends React.Component<Props, GameState> {
     /**
      * state has type GameState as specified in the class inheritance.
      */
-    this.state = { cells: [] }
+    this.state = { cells: [], currentPlayer: null, winner: null };
   }
 
   /**
@@ -45,7 +45,11 @@ class App extends React.Component<Props, GameState> {
   newGame = async () => {
     const response = await fetch('/newgame');
     const json = await response.json();
-    this.setState({ cells: json['cells'] });
+    this.setState({
+      cells: json['cells'],
+      currentPlayer: json['currentPlayer'],
+      winner: json['winner'],
+    });
   }
 
   /**
@@ -61,7 +65,12 @@ class App extends React.Component<Props, GameState> {
       e.preventDefault();
       const response = await fetch(`/play?x=${x}&y=${y}`)
       const json = await response.json();
-      this.setState({ cells: json['cells'] });
+      // console.log(json)
+      this.setState({
+        cells: json['cells'],
+        currentPlayer: json['currentPlayer'],
+        winner: json['winner'],
+      });
     }
   }
 
@@ -102,6 +111,16 @@ class App extends React.Component<Props, GameState> {
     }
   }
 
+  getInstructions(): React.ReactNode {
+    if (this.state.winner) {
+      return `Winner: ${this.state.winner}`;
+    } else if (this.state.currentPlayer) {
+      return `Current Player: ${this.state.currentPlayer}`;
+    } else {
+      return '';
+    }
+  }
+
   /**
    * The only method you must define in a React.Component subclass.
    * @returns the React element via JSX.
@@ -115,6 +134,9 @@ class App extends React.Component<Props, GameState> {
      */
     return (
       <div>
+        <div id="instructions">
+          {this.getInstructions()}
+        </div>
         <div id="board">
           {this.state.cells.map((cell, i) => this.createCell(cell, i))}
         </div>
