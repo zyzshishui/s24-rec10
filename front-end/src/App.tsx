@@ -14,11 +14,11 @@ interface Props { }
  * React will keep track of the value of props and state.
  * Any time there's a change to their values, React will
  * automatically update (not fully re-render) the HTML needed.
- * 
+ *
  * props and state are similar in the sense that they manage
  * the data of this component. A change to their values will
  * cause the view (HTML) to change accordingly.
- * 
+ *
  * Usually, props is passed and changed by the parent component;
  * state is the internal value of the component and managed by
  * the component itself.
@@ -52,12 +52,22 @@ class App extends React.Component<Props, GameState> {
     });
   }
 
+  undo = async () => {
+    const response = await fetch('/undo');
+    const json = await response.json();
+    this.setState({
+      cells: json['cells'],
+      currentPlayer: json['currentPlayer'],
+      winner: json['winner'],
+    });
+  }
+
   /**
    * play will generate an anonymous function that the component
    * can bind with.
-   * @param x 
-   * @param y 
-   * @returns 
+   * @param x
+   * @param y
+   * @returns
    */
   play(x: number, y: number): React.MouseEventHandler {
     return async (e) => {
@@ -141,9 +151,8 @@ class App extends React.Component<Props, GameState> {
           {this.state.cells.map((cell, i) => this.createCell(cell, i))}
         </div>
         <div id="bottombar">
-          <button onClick={/* get the function, not call the function */this.newGame}>New Game</button>
-          {/* Exercise: implement Undo function */}
-          <button>Undo</button>
+          <button onClick={this.newGame}>New Game</button>
+          <button onClick={this.undo}>Undo</button>
         </div>
       </div>
     );
